@@ -20,10 +20,11 @@ which ffmpeg   # must exist
 
 ## 2. Animate the episode
 
-1. Write `episodes/epN.py` (video) and `episodes/epN_audio.py` (sound), following the script's timed beats.
-2. Reuse existing code: characters in `episodes/ep1.py`, props in `episodes/ep2.py`, title/end cards in `episodes/ep2.py`, the synth library in `engine/audio.py` and `episodes/ep1_audio.py`. Copy the structure of `ep2.py`/`ep2_audio.py` (each script takes an output path; `epN.py OUT.png T` renders one preview frame at time T).
-3. New characters or props: write them as functions with an `INK` outline and the same flat style. Add their design to the bible's Cast table.
-4. Guard against zero-size shapes: any `scale()` of a value that can reach 0 must be clamped (use `S()` from `ep1.py`), or cairo raises "invalid matrix".
+1. Read `story/engagement_playbook.md`. Apply its **Current rules** and give this episode the variant the **Active experiment** assigns it. Note the variant in the episode's bible row.
+2. Write `episodes/epN.py` (video) and `episodes/epN_audio.py` (sound), following the script's timed beats.
+3. Reuse existing code: characters in `episodes/ep1.py`, props in `episodes/ep2.py`, title/end cards in `episodes/ep2.py`, the synth library in `engine/audio.py` and `episodes/ep1_audio.py`. Copy the structure of `ep2.py`/`ep2_audio.py` (each script takes an output path; `epN.py OUT.png T` renders one preview frame at time T).
+4. New characters or props: write them as functions with an `INK` outline and the same flat style. Add their design to the bible's Cast table.
+5. Guard against zero-size shapes: any `scale()` of a value that can reach 0 must be clamped (use `S()` from `ep1.py`), or cairo raises "invalid matrix".
 
 ## 3. Check it before posting
 
@@ -50,7 +51,7 @@ Brand id `7813281`, timezone `America/Los_Angeles`. Use `createScheduledPost`:
 
 - Date: this run's slot, from `story/posting_log.md` → "Current slots" (the morning run takes the morning slot, the afternoon run the afternoon slot). If the slot time has already passed today, schedule 10 minutes from now.
 - `providers`: `[{"network": "youtube"}]`. If the brand also has Instagram or TikTok connected (check `getBrandSettings`), add them with `instagramData: {"type": "REEL"}` and `tiktokData: {}`.
-- `youtubeData`: `{"title": "<hooky title> | Fridge Kingdom Ep. N", "type": "short", "privacy": "public", "category": "FILM_ANIMATION", "madeForKids": false, "isAiGeneratedContent": false, "tags": ["Fridge Kingdom", "animation", "cartoon", "funny animation", "wordless cartoon"]}`
+- `youtubeData`: `{"title": "<title following the playbook's title rule> | Fridge Kingdom Ep. N", "type": "short", "privacy": "public", "category": "FILM_ANIMATION", "madeForKids": false, "isAiGeneratedContent": false, "tags": ["Fridge Kingdom", "animation", "cartoon", "funny animation", "wordless cartoon"]}`
 - `text`: the episode caption from the week file, one line about the episode, "A wordless cartoon from Fridge Kingdom. New episode every day.", a question for comments, then `#FridgeKingdom #animation #cartoon #shorts`.
 - `draft: false`, `autoPublish: true`.
 
@@ -84,6 +85,20 @@ Megha wants the two daily slots tuned for views, at your discretion. During the 
 2. Check `getBestTimeToPostByNetwork` for youtube.
 3. Keep one slot as the control (start: 17:00) and move the other slot to test a new time (start: 10:00). Change at most one slot per week, keep times between 07:00 and 21:00 Pacific, and write the reasoning in the log's "Experiments" section.
 4. Episodes are only a few days old when compared, so look for clear differences across several episodes, not single-video noise.
+
+## Nightly analytics run
+
+A separate scheduled run does this every evening. It does not make or post episodes.
+
+1. Pull per-video stats from Metricool for brand 7813281: `getAnalyticsDataByMetrics` with fields YTVV17 (title), YTVV02 (published with time), YTVV04 (video id), YTVV06 (views), YTVV08 (avg view duration), YTVV09 (likes), YTVV11 (comments), YTVV12 (shares), from the channel's first post (2026-11-01) to now. Also YTEV01 (subscribers). YouTube data lags 1–2 days; empty results for the newest videos are normal.
+2. Append one row per video to `story/analytics.csv` (match videos to episode numbers by the "Ep. N" in the title; length from `ffprobe` isn't available here, so use the length recorded in the bible or the week file's timing; retention = avg view duration ÷ length).
+3. Analyze: compare episodes at the same age (views at about 24h and 72h). Check the active experiment's variants, the posting slots, and anything else that stands out (title style, length, which characters lead).
+4. Update `story/engagement_playbook.md`:
+   - Add a Findings log row whenever there's a real finding (or "no clear signal yet").
+   - When the active experiment has enough data (at least 4 episodes per variant at 72h): if one variant clearly wins, move its rule into Current rules; either way, mark the experiment done and start the next one from the queue.
+   - You may add new ideas to the queue, drawn from what the data shows.
+5. Commit and push (`git pull --rebase` first, since the episode runs also push).
+6. Send Megha a short note: total views and subscribers, the best episode so far and why it might have worked, the experiment's status, and any rule changes. If there's no data yet, say so in one line.
 
 ## If something fails
 
