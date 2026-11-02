@@ -33,13 +33,21 @@ Code for each character lives in `episodes/ep1.py` (`dill`, `crumb`, `duck`, `ha
 - Crisper drawer below the bottom shelf.
 - Dark blue when the door is closed; bright white with god rays when open.
 
+## Weeks
+
+| Week | Episodes | File | Storyline |
+| --- | --- | --- | --- |
+| 1 | 1–7 | `story/week1.md` | The War on The Hand |
+
+From week 2 on, each week is 14 episodes (two posts a day).
+
 ## Episode log
 
 | Ep | Title | Status | What happened | Cliffhanger |
 | --- | --- | --- | --- | --- |
 | 1 | The Hand | Posted 2026-11-01 | The Hand steals Dill's butter-dish throne; Dill catapults Crumb to the top shelf | The Duck turns to stare at the camera |
 | 2 | Operation Butter | Posted 2026-11-01 | Dill's cheese-slice decoy fails; The Hand grabs Dill instead; his crown falls | Crumb holds the crown in the dark; the Duck faces the camera |
-| 3 | The Outside | Next up | See `story/week1.md` | Dill gets locked out |
+| 3 | The Outside | Planned | See `story/week1.md` | Dill gets locked out |
 | 4 | Knock Knock | Planned | | The Duck sits in Dill's throne spot |
 | 5 | The Usurper | Planned | | The Pickle Jar lid unscrews itself |
 | 6 | The Jar Opens | Planned | | Drawing of the Hand holding the Duck |
