@@ -28,6 +28,8 @@ Code for each character lives in `episodes/ep1.py` (`dill`, `crumb`, `duck`, `ha
 
 ## Set
 
+- Kitchen (Ep 3, `episodes/ep3.py`): cream tiled wall with window, teal cabinets, butcher-block counter (edge at x=2000), blue/white checker floor, cutting board + plate, orange mug, giant spoon, striped sugar bowl, sprinkles, fridge exterior with magnets and handle (`fridge_front`).
+
 - Top shelf (y=720): pickle jar (left), the Duck (right).
 - Bottom shelf (y=1450): milk carton (far left), butter-dish throne spot (x≈420).
 - Crisper drawer below the bottom shelf.
@@ -47,7 +49,7 @@ From week 2 on, each week is 14 episodes (two posts a day).
 | --- | --- | --- | --- | --- |
 | 1 | The Hand | Posted 2026-11-01 | The Hand steals Dill's butter-dish throne; Dill catapults Crumb to the top shelf | The Duck turns to stare at the camera |
 | 2 | Operation Butter | Posted 2026-11-01 | Dill's cheese-slice decoy fails; The Hand grabs Dill instead; his crown falls | Crumb holds the crown in the dark; the Duck faces the camera |
-| 3 | The Outside | Planned | See `story/week1.md` | Dill gets locked out |
+| 3 | The Outside | Scheduled 2026-11-02 17:00 (variant A: title card first; 40s) | The Hand drops Dill onto a plate in the giant kitchen; a sandwich is built around him and he's pinched onto the tomato; he dives out as the top slice slams, zips down a giant spoon, PINGs off a sugar bowl, skids through sprinkles, somersaults off the counter to a heroic floor landing, and races the slowly closing fridge door | The door slams; Dill BONKs flat against it and peels off. Inside in the dark, Crumb is admiring himself in the crown when three knocks sound; the Duck (top shelf front edge) turns toward the door |
 | 4 | Knock Knock | Planned | | The Duck sits in Dill's throne spot |
 | 5 | The Usurper | Planned | | The Pickle Jar lid unscrews itself |
 | 6 | The Jar Opens | Planned | | Drawing of the Hand holding the Duck |
@@ -59,6 +61,8 @@ From week 2 on, each week is 14 episodes (two posts a day).
 - The Outside exists and is huge (Ep 3); kitchen characters could visit.
 - The Duck's bath-time departure (Ep 7) means it could return changed.
 - Grandma Gherkin (Ep 6) has authority over Dill.
+- The fridge door's outside has magnets (banana, star, pizza) and a handle, already shown in Ep 3 for Ep 4's climb.
+- Crumb secretly enjoyed wearing the crown (Ep 3).
 
 ## Weekly arc rules
 
