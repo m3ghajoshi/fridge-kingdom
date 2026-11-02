@@ -1,0 +1,82 @@
+# Fridge Kingdom: Daily Episode Runbook
+
+This repo runs a wordless animated series posted daily to YouTube Shorts. Each daily run makes and posts exactly ONE new episode. Follow these steps in order.
+
+The owner (Megha) has given standing approval to post finished episodes publicly without asking first.
+
+## 0. Setup
+
+```bash
+pip install pycairo numpy scipy --break-system-packages -q
+which ffmpeg   # must exist
+```
+
+## 1. Figure out today's episode
+
+1. Read `story/bible.md` (cast, rules, episode log, open threads).
+2. Find the lowest-numbered episode in the Episode log whose status is not "Posted". That is today's episode N.
+3. Its script is in `story/weekK.md`, where K = ceil(N / 7).
+4. **If `story/weekK.md` does not exist yet** (start of a new week), write it first. See "Writing a new week" below.
+
+## 2. Animate the episode
+
+1. Write `episodes/epN.py` (video) and `episodes/epN_audio.py` (sound), following the script's timed beats.
+2. Reuse existing code: characters in `episodes/ep1.py`, props in `episodes/ep2.py`, title/end cards in `episodes/ep2.py`, the synth library in `engine/audio.py` and `episodes/ep1_audio.py`. Copy the structure of `ep2.py`/`ep2_audio.py` (each script takes an output path; `epN.py OUT.png T` renders one preview frame at time T).
+3. New characters or props: write them as functions with an `INK` outline and the same flat style. Add their design to the bible's Cast table.
+4. Guard against zero-size shapes: any `scale()` of a value that can reach 0 must be clamped (use `S()` from `ep1.py`), or cairo raises "invalid matrix".
+
+## 3. Check it before posting
+
+1. Render 8–12 preview frames across the episode, combine them into a contact sheet, and LOOK at it.
+2. Check: characters fully on screen and large enough to read on a phone, nothing hidden behind props, no broken shapes, the story beats are readable without words, the Duck appears, the cliffhanger lands.
+3. Fix and re-check until it would pass a picky viewer. Then render the full episode:
+
+```bash
+./render.sh N "Short_Title"     # writes videos/NN_Short_Title.mp4
+```
+
+4. Confirm the duration with ffprobe (30–45s) and listen-check the audio isn't silent or clipped (peak level via numpy).
+
+## 4. Publish the video file
+
+1. `git add` the episode code and `videos/NN_*.mp4`, commit, and push to `main`.
+2. The public link Metricool needs is:
+   `https://raw.githubusercontent.com/m3ghajoshi/fridge-kingdom/main/videos/NN_Short_Title.mp4`
+3. Confirm the link returns the video (HTTP 200, content-type video/mp4 or octet-stream, correct size).
+
+## 5. Schedule the post in Metricool
+
+Brand id `7813281`, timezone `America/Los_Angeles`. Use `createScheduledPost`:
+
+- Date: today at **17:00 Pacific**. If it's already past 17:00, schedule 10 minutes from now.
+- `providers`: `[{"network": "youtube"}]`. If the brand also has Instagram or TikTok connected (check `getBrandSettings`), add them with `instagramData: {"type": "REEL"}` and `tiktokData: {}`.
+- `youtubeData`: `{"title": "<hooky title> | Fridge Kingdom Ep. N", "type": "short", "privacy": "public", "category": "FILM_ANIMATION", "madeForKids": false, "isAiGeneratedContent": false, "tags": ["Fridge Kingdom", "animation", "cartoon", "funny animation", "wordless cartoon"]}`
+- `text`: the episode caption from the week file, one line about the episode, "A wordless cartoon from Fridge Kingdom. New episode every day.", a question for comments, then `#FridgeKingdom #animation #cartoon #shorts`.
+- `draft: false`, `autoPublish: true`.
+
+The response's `media` URL should switch to `static.metricool.com`. That means Metricool copied the file.
+
+## 6. Clean up and record
+
+1. After Metricool has copied the media, delete `videos/NN_*.mp4` from the repo (keeps the repo small). Keep the episode code.
+2. Update `story/bible.md`: set episode N's status to "Scheduled YYYY-MM-DD", fill in "What happened" and "Cliffhanger" from what you actually animated, and add any new open threads or characters.
+3. Commit and push.
+4. Send Megha a short note: episode number and title, the scheduled time, and the Metricool planner link from the response.
+
+## Writing a new week
+
+When episode N is the first episode of week K and `story/weekK.md` doesn't exist:
+
+1. Re-read the whole bible, especially Open threads and the last cliffhanger.
+2. Write a 7-episode arc that continues directly from the last cliffhanger, in the same format as `story/week1.md` (a one-line summary and a timed-beat table per episode, the Duck's location, new assets, and a captions table).
+3. You may introduce 1–2 new characters. Give each a full visual design, a personality, and a running gag, and add them to the Cast table.
+4. Make the story richer than the week before: pay off at least one older open thread, plant at least one new mystery, and give a side character a bigger moment.
+5. Add the 7 new episodes to the Episode log as "Planned".
+6. Include a short summary of the new arc and the new characters in the note to Megha.
+
+## If something fails
+
+- Rendering crashes: fix the code and retry. Don't post a broken or partial video.
+- Push is refused: stop and tell Megha that GitHub push access needs reconnecting.
+- Metricool rejects the post: report the exact error to Megha. Don't retry with different settings on your own.
+- Never post more than one episode per run.
