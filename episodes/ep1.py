@@ -82,6 +82,11 @@ def dill(c, x, y, mood="proud", look=(0, 0), arm="down", crown_on=True, rot=0.0,
     c.set_source_rgb(*INK); c.set_line_width(10)
     if arm == "reach":   # both arms straight up, empty-handed (climbing / hanging)
         c.move_to(-60, -170); c.line_to(-96, -290)
+    elif arm in ("point_l", "flail"):   # left arm pointing left (Ep 5); "flail": left up, right out
+        if arm == "point_l":
+            c.move_to(-70, -160); c.line_to(-140, -175)
+        else:
+            c.move_to(-60, -170); c.line_to(-110, -270)
     else:
         c.move_to(-70, -150); c.line_to(-112, -100)
     if arm == "reach":
@@ -90,7 +95,7 @@ def dill(c, x, y, mood="proud", look=(0, 0), arm="down", crown_on=True, rot=0.0,
         c.move_to(70, -160); c.line_to(150, -190)
     elif arm == "up":
         c.move_to(70, -160); c.line_to(118, -250)
-    elif arm == "point":
+    elif arm in ("point", "flail"):
         c.move_to(70, -160); c.line_to(140, -175)
     else:
         c.move_to(70, -150); c.line_to(112, -100)
