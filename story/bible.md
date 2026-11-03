@@ -28,6 +28,7 @@ Code for each character lives in `episodes/ep1.py` (`dill`, `crumb`, `duck`, `ha
 
 ## Set
 
+- Fridge door outside with climbable magnets, handle, door-swing geometry (`fridge_door`, Ep 4 `episodes/ep4.py`); eggs, shells, yolk, toothpick spear also in `ep4.py`. Dill now has `arm="reach"` (both arms up) and `arm="pound"` (knocking fist).
 - Kitchen (Ep 3, `episodes/ep3.py`): cream tiled wall with window, teal cabinets, butcher-block counter (edge at x=2000), blue/white checker floor, cutting board + plate, orange mug, giant spoon, striped sugar bowl, sprinkles, fridge exterior with magnets and handle (`fridge_front`).
 
 - Top shelf (y=720): pickle jar (left), the Duck (right).
@@ -50,7 +51,7 @@ From week 2 on, each week is 14 episodes (two posts a day).
 | 1 | The Hand | Posted 2026-11-01 | The Hand steals Dill's butter-dish throne; Dill catapults Crumb to the top shelf | The Duck turns to stare at the camera |
 | 2 | Operation Butter | Posted 2026-11-01 | Dill's cheese-slice decoy fails; The Hand grabs Dill instead; his crown falls | Crumb holds the crown in the dark; the Duck faces the camera |
 | 3 | The Outside | Scheduled 2026-11-02 17:00 (variant A: title card first; 40s) | The Hand drops Dill onto a plate in the giant kitchen; a sandwich is built around him and he's pinched onto the tomato; he dives out as the top slice slams, zips down a giant spoon, PINGs off a sugar bowl, skids through sprinkles, somersaults off the counter to a heroic floor landing, and races the slowly closing fridge door | The door slams; Dill BONKs flat against it and peels off. Inside in the dark, Crumb is admiring himself in the crown when three knocks sound; the Duck (top shelf front edge) turns toward the door |
-| 4 | Knock Knock | Planned | | The Duck sits in Dill's throne spot |
+| 4 | Knock Knock | Scheduled 2026-11-03 10:00 (variant B: cold open; 39.6s) | Cold open on a split screen: outside, red-faced Dill pounds the door; inside, Crumb (wearing the crown) jumps and screams at every knock. Crumb shuttles six eggs into a wobbly pyramid wall and hides behind it with a toothpick spear (the Duck perches on top of the egg wall for a moment; nobody notices). Dill climbs the door magnets (banana, star, pizza); the pizza magnet slides all the way down with him (clunk, sad trombone). He climbs again, leaps to the handle and strains (HNNNG). The Hand grabs the handle above him and swings the door open; Dill is flung inside like a wrecking ball, CRACKs through the egg wall and flattens Crumb. Both yolky; they hug; Crumb hands back the crown and Dill puts it on with great dignity (sword raised). | Door closes. Dill turns to his throne spot: the Duck is sitting exactly there, then slowly turns its head to the camera |
 | 5 | The Usurper | Planned | | The Pickle Jar lid unscrews itself |
 | 6 | The Jar Opens | Planned | | Drawing of the Hand holding the Duck |
 | 7 | The Truth About the Duck | Planned | | An egg on the top shelf cracks (Week 2 hook) |
@@ -62,7 +63,9 @@ From week 2 on, each week is 14 episodes (two posts a day).
 - The Duck's bath-time departure (Ep 7) means it could return changed.
 - Grandma Gherkin (Ep 6) has authority over Dill.
 - The fridge door's outside has magnets (banana, star, pizza) and a handle, already shown in Ep 3 for Ep 4's climb.
-- Crumb secretly enjoyed wearing the crown (Ep 3).
+- Crumb secretly enjoyed wearing the crown (Ep 3); he gave it back in Ep 4.
+- The pizza magnet now sits at the bottom of the fridge door (Ep 4).
+- How did the Duck get from the top shelf to the egg wall to the throne spot in the dark? (Ep 4)
 
 ## Weekly arc rules
 
