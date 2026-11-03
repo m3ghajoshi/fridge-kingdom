@@ -19,8 +19,8 @@ A tiny society lives inside a fridge. To them, the door opening is a cosmic even
 | Character | Design | Personality | Running gag | First appeared |
 | --- | --- | --- | --- | --- |
 | Dill | Green pickle, mismatched eyes (small left, big right), gold crown with 3 gems, toothpick sword with red flag | Dramatic, power-hungry, vain | Declares war on everything; loses the crown constantly | Ep 1 |
-| Crumb | Toast slice, brown crust, jelly smudge on lower right, sweat drop | Anxious, loyal, says yes to everything | Always the one who gets launched or used as bait | Ep 1 |
-| The Duck | Yellow rubber duck, orange beak | Never seen moving except one tiny motion per episode | Is somewhere new every episode; nobody addresses it | Ep 1 |
+| Crumb | Toast slice, brown crust, jelly smudge on lower right, sweat drop; top-right crust corner snapped off in Ep 5 (`crumb_notched` in `episodes/ep5.py`) | Anxious, loyal, says yes to everything | Always the one who gets launched or used as bait | Ep 1 |
+| The Duck | Yellow rubber duck, orange beak; since Ep 5 wears an orange-red crimped bottle-cap crown (`cap_crown` in `episodes/ep5.py`), now tilted | Never seen moving except one tiny motion per episode | Is somewhere new every episode; nobody addresses it | Ep 1 |
 | The Pickle Jar | Glass jar, red lid, 5 small pickles with eyes inside | Silent relatives who stare | Watch everything from the top shelf | Ep 1 |
 | The Hand | Huge dark-purple silhouette | Unknowable force of nature | Arrives with the choir; never cares about fridge politics | Ep 1 |
 
@@ -52,7 +52,7 @@ From week 2 on, each week is 14 episodes (two posts a day).
 | 2 | Operation Butter | Posted 2026-11-01 | Dill's cheese-slice decoy fails; The Hand grabs Dill instead; his crown falls | Crumb holds the crown in the dark; the Duck faces the camera |
 | 3 | The Outside | Scheduled 2026-11-02 17:00 (variant A: title card first; 40s) | The Hand drops Dill onto a plate in the giant kitchen; a sandwich is built around him and he's pinched onto the tomato; he dives out as the top slice slams, zips down a giant spoon, PINGs off a sugar bowl, skids through sprinkles, somersaults off the counter to a heroic floor landing, and races the slowly closing fridge door | The door slams; Dill BONKs flat against it and peels off. Inside in the dark, Crumb is admiring himself in the crown when three knocks sound; the Duck (top shelf front edge) turns toward the door |
 | 4 | Knock Knock | Scheduled 2026-11-03 10:00 (variant B: cold open; 39.6s) | Cold open on a split screen: outside, red-faced Dill pounds the door; inside, Crumb (wearing the crown) jumps and screams at every knock. Crumb shuttles six eggs into a wobbly pyramid wall and hides behind it with a toothpick spear (the Duck perches on top of the egg wall for a moment; nobody notices). Dill climbs the door magnets (banana, star, pizza); the pizza magnet slides all the way down with him (clunk, sad trombone). He climbs again, leaps to the handle and strains (HNNNG). The Hand grabs the handle above him and swings the door open; Dill is flung inside like a wrecking ball, CRACKs through the egg wall and flattens Crumb. Both yolky; they hug; Crumb hands back the crown and Dill puts it on with great dignity (sword raised). | Door closes. Dill turns to his throne spot: the Duck is sitting exactly there, then slowly turns its head to the camera |
-| 5 | The Usurper | Planned | | The Pickle Jar lid unscrews itself |
+| 5 | The Usurper | Scheduled 2026-11-03 17:00 (variant A: title card first; 39.4s) | The Duck sits on Dill's throne spot wearing a crimped orange bottle-cap crown. Yolky Dill trembles, steams and points (thought bubble: duck, crossed out). Staring contest: Dill's eyes water, his big eye twitches, he BLINKs first and topples backwards (THUD). Dance-off: Dill flails to a funky bassline; the Duck does nothing; a cricket chirps. Dill charges with his sword, leaps onto the Duck, BOINGs off it like a trampoline and CRASHes into the milk carton (milk splashes), sliding down dizzy. Crumb snaps off his own top-right crust corner (CRUNCH, tiny ow), sets it before the Duck as a gift and bows deeply. Silence. The Duck squeaks once; its cap crown tilts. Dill and Crumb scream, run in circles, and dive behind a big jello (far right of bottom shelf), peeking over it. | Top shelf: the Pickle Jar lid turns by itself, click by click, rising and showing a gap of light |
 | 6 | The Jar Opens | Planned | | Drawing of the Hand holding the Duck |
 | 7 | The Truth About the Duck | Planned | | An egg on the top shelf cracks (Week 2 hook) |
 
@@ -66,6 +66,10 @@ From week 2 on, each week is 14 episodes (two posts a day).
 - Crumb secretly enjoyed wearing the crown (Ep 3); he gave it back in Ep 4.
 - The pizza magnet now sits at the bottom of the fridge door (Ep 4).
 - How did the Duck get from the top shelf to the egg wall to the throne spot in the dark? (Ep 4)
+- Where did the Duck's bottle-cap crown come from? (Ep 5)
+- Crumb is missing a corner (Ep 5); his snapped-off corner sits as an offering in front of the Duck.
+- Dill has a new left-pointing arm (`arm="point_l"`) and a dance pose (`arm="flail"`) in `ep1.py`.
+- A big jello now sits at the far right of the bottom shelf (Dill and Crumb's hiding spot, Ep 5).
 
 ## Weekly arc rules
 
