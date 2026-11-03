@@ -47,4 +47,5 @@ Starting rules, based on general Shorts practice. Replace them as our own data c
 
 | Date | Finding | Evidence | Action taken |
 | --- | --- | --- | --- |
+| 2026-11-02 (night) | No clear signal yet: no per-video YouTube rows for Eps 1–3 (Eps 1–2 ~22h old, Ep 3 ~4h; within the 1–2 day lag). Channel has 3 subscribers. | Metricool YTVV query 11-01→11-03 returned 0 rows; YTEV01 = 3 (2026-11-02) | None. Experiment 1 continues (Ep 3 = A; Ep 4 will be first B) |
 | 2026-11-02 | Loop started; no analytics yet (YouTube data lags 1–2 days) | Metricool returned no rows | Started Experiment 1 |
