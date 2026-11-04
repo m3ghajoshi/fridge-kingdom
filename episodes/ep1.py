@@ -61,6 +61,8 @@ def dill(c, x, y, mood="proud", look=(0, 0), arm="down", crown_on=True, rot=0.0,
         c.move_to(-54, -244); c.line_to(-6, -226); c.move_to(70, -258); c.line_to(10, -232); c.stroke()
     elif mood == "proud":
         c.move_to(-50, -240); c.line_to(-8, -246); c.move_to(4, -258); c.line_to(62, -262); c.stroke()
+    elif mood == "sad":   # Ep 6: brows tilted up in the middle
+        c.move_to(-54, -226); c.line_to(-12, -244); c.move_to(70, -240); c.line_to(14, -262); c.stroke()
     # mouth
     c.set_line_width(6)
     if mood == "proud":
@@ -78,6 +80,8 @@ def dill(c, x, y, mood="proud", look=(0, 0), arm="down", crown_on=True, rot=0.0,
             c.move_to(tx, -146); c.line_to(tx, -128); c.stroke()
     elif mood == "smug":
         c.move_to(-30, -140); c.curve_to(-10, -124, 20, -126, 46, -148); c.stroke()
+    elif mood == "sad":
+        c.move_to(-28, -122); c.curve_to(-10, -146, 22, -146, 40, -120); c.stroke()
     # arms
     c.set_source_rgb(*INK); c.set_line_width(10)
     if arm == "reach":   # both arms straight up, empty-handed (climbing / hanging)
