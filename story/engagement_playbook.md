@@ -34,6 +34,7 @@ Starting rules, based on general Shorts practice. Replace them as our own data c
 3. Title style: mystery question ("Why Is the Duck Watching?") vs action statement ("Dill Declares War")
 4. Ending: hard cliffhanger vs loop-friendly ending (the last frame matches the first, so replays feel seamless)
 5. Focus character: Dill-led vs Crumb-led vs Duck-mystery episodes
+6. Emoji in title vs no emoji (Eps 1–3 used emojis, Ep 4 didn't; keep titles consistent until this is tested)
 
 ## Guardrails
 
@@ -47,5 +48,6 @@ Starting rules, based on general Shorts practice. Replace them as our own data c
 
 | Date | Finding | Evidence | Action taken |
 | --- | --- | --- | --- |
+| 2026-11-03 (night) | No clear signal yet. Metricool now lists Eps 1–4 (IDs and publish times recorded in analytics.csv) but per-video views/duration/likes are still null; Ep 5 not listed yet. Channel-level: 29 video views (all dated 11-01, likely YouTube's lagged daily total), subscribers 3 → 4. Note for later: Eps 1–3 titles have emojis, Ep 4 doesn't; watch this as a possible confound in Experiment 1. | YTVP/YTVV per-video query 11-01→11-04 returned metric fields null; YTEV02 = 29; YTEV01 = 4 (2026-11-03) | None. Experiment 1 continues (A: Eps 3, 5; B: Ep 4). Need ≥4 per variant at 72h (earliest ~Eps 3–10, around 11-10) |
 | 2026-11-02 (night) | No clear signal yet: no per-video YouTube rows for Eps 1–3 (Eps 1–2 ~22h old, Ep 3 ~4h; within the 1–2 day lag). Channel has 3 subscribers. | Metricool YTVV query 11-01→11-03 returned 0 rows; YTEV01 = 3 (2026-11-02) | None. Experiment 1 continues (Ep 3 = A; Ep 4 will be first B) |
 | 2026-11-02 | Loop started; no analytics yet (YouTube data lags 1–2 days) | Metricool returned no rows | Started Experiment 1 |
