@@ -84,6 +84,12 @@ def dill(c, x, y, mood="proud", look=(0, 0), arm="down", crown_on=True, rot=0.0,
         c.move_to(-28, -122); c.curve_to(-10, -146, 22, -146, 40, -120); c.stroke()
     # arms
     c.set_source_rgb(*INK); c.set_line_width(10)
+    if arm == "cross":   # Ep 15: arms folded across the chest (sulking)
+        c.move_to(-70, -160); c.line_to(28, -128); c.move_to(70, -160); c.line_to(-28, -140); c.stroke()
+        ellipse(c, 30, -128, 11, 11, GREEN, lw=4); ellipse(c, -30, -140, 11, 11, GREEN, lw=4)
+        if crown_on:
+            crown(c, 4, -280, 1.0, 0.08)
+        c.restore(); return
     if arm == "reach":   # both arms straight up, empty-handed (climbing / hanging)
         c.move_to(-60, -170); c.line_to(-96, -290)
     elif arm in ("point_l", "flail"):   # left arm pointing left (Ep 5); "flail": left up, right out
@@ -162,6 +168,10 @@ def crumb(c, x, y, mood="worried", look=(0, 0), arm="down", rot=0.0, shake=0.0, 
         c.move_to(78, -232); c.curve_to(70, -214, 74, -204, 82, -204); c.curve_to(90, -204, 92, -214, 78, -232)
         c.set_source_rgb(*hexc("#74C0FC")); c.fill()
     c.set_source_rgb(*INK); c.set_line_width(9)
+    if arm == "none":     # Ep 15: arms drawn by the episode (hugging / mopping)
+        if crown_on:
+            crown(c, -6, -292, 0.9, -0.15)
+        c.restore(); return
     if arm == "wave_l":   # Ep 14: left arm raised
         c.move_to(-70, -130); c.line_to(-100, -290)
     else:
