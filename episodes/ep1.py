@@ -162,7 +162,10 @@ def crumb(c, x, y, mood="worried", look=(0, 0), arm="down", rot=0.0, shake=0.0, 
         c.move_to(78, -232); c.curve_to(70, -214, 74, -204, 82, -204); c.curve_to(90, -204, 92, -214, 78, -232)
         c.set_source_rgb(*hexc("#74C0FC")); c.fill()
     c.set_source_rgb(*INK); c.set_line_width(9)
-    c.move_to(-70, -120); c.line_to(-104, -76)
+    if arm == "wave_l":   # Ep 14: left arm raised
+        c.move_to(-70, -130); c.line_to(-100, -290)
+    else:
+        c.move_to(-70, -120); c.line_to(-104, -76)
     if arm == "wave":
         k = math.sin(random.random() * 0) + 0
         c.move_to(70, -130); c.line_to(112, -210)
