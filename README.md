@@ -7,3 +7,4 @@ A wordless animated series about a tiny kingdom inside a fridge. New episode dai
 - `episodes/`: one animation + sound script per episode
 - `engine/`: shared drawing and sound helpers
 - `CLAUDE.md`: the daily production runbook
+- `longform/`: weekly long-form film compiler (`compile.sh`, `chapter_card.py`)

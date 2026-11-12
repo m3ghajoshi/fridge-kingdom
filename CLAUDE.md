@@ -100,6 +100,23 @@ A separate scheduled run does this every evening. It does not make or post episo
 5. Commit and push (`git pull --rebase` first, since the episode runs also push).
 6. Send Megha a short note: total views and subscribers, the best episode so far and why it might have worked, the experiment's status, and any rule changes. If there's no data yet, say so in one line.
 
+## Weekly long-form film
+
+Once a week, after the last episode of a week's storyline has been animated (episodes are renamed "Scheduled" in the bible), compile that week into one landscape 16:9 film for YouTube long-form. This is a separate task from the daily episode runs: it makes ONE film, posts nothing else, and never changes episode code.
+
+1. Setup as in step 0, then render and compile in one command (episodes re-render from code into `build/`, about 1 minute each):
+
+```bash
+longform/compile.sh FIRST LAST "Film_Name" "Intro title" "Intro subtitle"
+# e.g. longform/compile.sh 8 21 Fridge_Kingdom_Week2_Full_Movie "The Egg + The Frozen North" "Episodes 8-21"
+```
+
+   Run it in the background and poll: 14 episodes take about 25 minutes in total. `FORCE=1` re-renders episodes that already exist in `build/`.
+2. What it does: cuts each episode to its story window (variant A skips the 2s title card, every episode stops at `END_T` before the TO BE CONTINUED card), puts the vertical footage over a blurred copy of itself at 1920x1080, adds an intro card, a chapter card before each episode, and a short closing card, then writes `longform/out/<Name>.mp4` (under 100 MB) and `longform/out/<Name>_chapters.txt` (YouTube chapter timestamps).
+3. Check before publishing: look at a contact sheet of frames across the film (intro, a chapter card, several episodes, the last episode's final frame), confirm the duration with ffprobe, and run `volumedetect` on a few windows for clipping.
+4. Publish as a regular video, not a Short: Metricool `youtubeData` with `"type": "video"` (not `"short"`), `"madeForKids": false`, `"category": "FILM_ANIMATION"`. Title: the week's mystery first, then "| Fridge Kingdom Full Movie". Description: one paragraph of what happens, the chapters file contents (first line must be `0:00`), a comment question, then `#FridgeKingdom #animation #cartoon`. Hosting: `longform/out/` is git-ignored; to give Metricool a public link, commit the mp4 under `videos/`, push, schedule, then delete it (same as episodes).
+5. Ask Megha before scheduling the first long-form film. After that, follow her answer.
+
 ## If something fails
 
 - Rendering crashes: fix the code and retry. Don't post a broken or partial video.
