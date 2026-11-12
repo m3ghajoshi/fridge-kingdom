@@ -39,6 +39,6 @@
 | 18 | 2026-11-10 | 10:00 | Tue | |
 | 19 | 2026-11-10 | 17:00 | Tue | |
 | 20 | 2026-11-11 | 10:00 | Wed | |
-| 21 | 2026-11-11 | 17:00 | Wed | |
-| 22 | 2026-11-12 | 10:00 | Thu | |
+| 21 | 2026-11-12 | 13:55 | Thu | (posted late via YouTube Studio: Metricool limit) |
+| 22 | 2026-11-12 | 14:00 | Thu | (posted late via YouTube Studio: Metricool limit) |
 | 23 | 2026-11-12 | 17:00 | Thu | |
