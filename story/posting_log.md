@@ -42,3 +42,4 @@
 | 21 | 2026-11-12 | 13:55 | Thu | (posted late via YouTube Studio: Metricool limit) |
 | 22 | 2026-11-12 | 14:00 | Thu | (posted late via YouTube Studio: Metricool limit) |
 | 23 | 2026-11-12 | 17:00 | Thu | |
+| 24 | 2026-11-13 | 10:00 | Fri | |
