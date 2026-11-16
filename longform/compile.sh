@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 # Weekly long-form film: re-render episodes FIRST..LAST, trim title / TO-BE-CONTINUED cards,
-# reframe the vertical footage to 1920x1080 over a blurred copy of itself, add chapter cards,
+# reframe the vertical episodes to fill 1920x1080 edge to edge with a camera that follows the action
+# (longform/track.py picks the path, longform/reframe.py redraws the episode zoomed so it stays sharp),
+# add chapter cards,
 # and write longform/out/<NAME>.mp4 plus <NAME>_chapters.txt (YouTube chapter timestamps).
 #
 # Usage: longform/compile.sh FIRST LAST "Film_Name" "Intro title" "Intro subtitle"
 #   e.g. longform/compile.sh 8 21 Week2_Full_Movie "The Egg + The Frozen North" "Episodes 8-21"
 # Env: FORCE=1 re-renders episodes even if build/ files exist.
+#      FRAMING=blur uses the old look (vertical episode centred over a blurred copy of itself).
 #
 # Episode windows: variant-A episodes (title card first) start at 2.0s, variant-B (cold open)
 # start at 0; every episode ends at its END_T (the cliffhanger frame, before the TBC card).
@@ -22,7 +25,8 @@ OUT="longform/out/${NAME}.mp4"
 CHAPTERS="longform/out/${NAME}_chapters.txt"
 
 # Titles come from the bible's episode log (2nd column).
-title_of() { awk -F'|' -v n="$1" '$2+0==n && $2 ~ /[0-9]/ {gsub(/^ +| +$/,"",$3); print $3; exit}' story/bible.md; }
+# Only Episode-log rows (status column says Scheduled/Posted/Published), not the Weeks table.
+title_of() { awk -F'|' -v n="$1" '$2+0==n && $2 ~ /[0-9]/ && $4 ~ /Scheduled|Posted|Published|Planned/ {gsub(/^ +| +$/,"",$3); print $3; exit}' story/bible.md; }
 const_of() { grep -h -E "^$2 *=" "episodes/ep$1.py" | head -1 | sed -E "s/^[A-Z_]+ *= *([0-9.]+).*/\1/"; }
 
 VF=(-r 30 -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p)
@@ -56,8 +60,10 @@ add_seg build/lf/intro.mp4 "Intro"
 
 for N in $(seq "$FIRST" "$LAST"); do
   TITLE="$(title_of "$N")"
-  END_T="$(const_of "$N" END_T)"
+  END_T="$(const_of "$N" END_T || true)"
   START="$(const_of "$N" T_START || true)"
+  # Eps 1-2 predate the END_T/T_START constants: their story windows, read from their frame() code.
+  case "$N" in 1) START=2.4; END_T=29.2 ;; 2) START=2.0; END_T=36.0 ;; esac
   [ -z "$START" ] && START=0
   # Older episodes (9, 11) define the 2.0s title card inline rather than as T_START.
   if [ "$START" = "0" ] && grep -q -E "^\| *$N *\|.*variant A" story/bible.md; then START=2.0; fi
@@ -73,15 +79,24 @@ for N in $(seq "$FIRST" "$LAST"); do
   add_seg "build/lf/ch${N}.mp4" "Ep $N: $TITLE"
 
   DUR=$(python3 -c "print($END_T-$START)")
-  ffmpeg -y -loglevel error -ss "$START" -t "$DUR" -i "build/ep${N}_video.mp4" \
-    -ss "$START" -t "$DUR" -i "build/ep${N}.wav" \
-    -filter_complex "[0:v]split[a][b];[a]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,boxblur=50:6,eq=brightness=-0.12:saturation=1.1[bg];[b]scale=-2:1080[fg];[bg][fg]overlay=(W-w)/2:0,format=yuv420p[v];[1:a]aresample=48000,aformat=channel_layouts=stereo,afade=t=in:d=0.04,afade=t=out:st=$(python3 -c "print($DUR-0.2)"):d=0.2[a]" \
-    -map "[v]" -map "[a]" "${VF[@]}" "${AF[@]}" "build/lf/ep${N}.mp4"
+  AFX="[1:a]aresample=48000,aformat=channel_layouts=stereo,afade=t=in:d=0.04,afade=t=out:st=$(python3 -c "print($DUR-0.2)"):d=0.2[a]"
+  if [ "${FRAMING:-track}" = "blur" ]; then
+    ffmpeg -y -loglevel error -ss "$START" -t "$DUR" -i "build/ep${N}_video.mp4" \
+      -ss "$START" -t "$DUR" -i "build/ep${N}.wav" \
+      -filter_complex "[0:v]split[a][b];[a]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,boxblur=50:6,eq=brightness=-0.12:saturation=1.1[bg];[b]scale=-2:1080[fg];[bg][fg]overlay=(W-w)/2:0,format=yuv420p[v];$AFX" \
+      -map "[v]" -map "[a]" "${VF[@]}" "${AF[@]}" "build/lf/ep${N}.mp4"
+  else
+    python3 longform/track.py "build/ep${N}_video.mp4" "build/lf/cam${N}.txt"
+    python3 longform/reframe.py "$N" "$START" "$END_T" "build/lf/cam${N}.txt" "build/lf/ep${N}_wide.mp4"
+    ffmpeg -y -loglevel error -i "build/lf/ep${N}_wide.mp4" -ss "$START" -t "$DUR" -i "build/ep${N}.wav" \
+      -filter_complex "[0:v]format=yuv420p[v];$AFX" -map "[v]" -map "[a]" "${VF[@]}" "${AF[@]}" -shortest "build/lf/ep${N}.mp4"
+  fi
   add_seg "build/lf/ep${N}.mp4"
 done
 
 # --- outro ---
-card build/lf/outro.mp4 5 end "New episodes every day" "Subscribe so you don't miss Week 3"
+NEXT_WEEK=$(( (LAST - 7) / 14 + 2 ))
+card build/lf/outro.mp4 5 end "New episodes every day" "Subscribe so you don't miss Week ${NEXT_WEEK}"
 add_seg build/lf/outro.mp4 "To be continued..."
 
 : > build/lf/list.txt
