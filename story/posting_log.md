@@ -69,3 +69,5 @@
 2026-11-19 morning run: skipped. Metricool still shows Eps 21–24 as ERROR ("You have reached your Metricool account limit"); Eps 23–24 not on YouTube. Ep 25 not made or scheduled. Resume once the limit is fixed and Eps 23–24 are live.
 
 2026-11-19 afternoon run: skipped. Metricool still shows Eps 21–24 as ERROR ("You have reached your Metricool account limit"); Eps 23–24 not on YouTube. Ep 25 not made or scheduled. Resume once the limit is fixed and Eps 23–24 are live.
+
+2026-11-20 morning run: skipped. Metricool still shows Eps 22–24 as ERROR ("You have reached your Metricool account limit"); Eps 23–24 not on YouTube. Ep 25 not made or scheduled. Resume once the limit is fixed and Eps 23–24 are live.
